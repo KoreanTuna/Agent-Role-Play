@@ -41,5 +41,21 @@
 - 질문: 운영 모니터링 목표(SLO) 및 알람 임계값을 정해주실 수 있나요?
 - 우선순위: Low
 
-생성자: Plan 에이전트
+8) 플랫폼 최소 버전 상이 — iOS 12 vs iOS 13 (정책 확정 필요)
+- 설명: `developer-guide.md` 11장에서는 iOS 12.0 이상 호환성을 명시했으나, `docs/threads/2025-12-19-frontend-mvp-analysis.md` 테스트 계획은 iOS 13.0 이상을 가정합니다. QA 범위/지원 정책 혼선 가능성이 있습니다.
+- 제안/질문:
+  - 공식 최소 지원 OS(iOS/Android) 버전을 PM이 확정해주세요.
+  - 확정 후 `developer-guide.md`와 테스트 계획(threads) 내용을 일치시키고, README/Quick Start에도 반영해주세요.
+- 우선순위: Medium
+- 권장 담당: PM + 프론트엔드
 
+9) API 명세 누락 — 닉네임 중복, 비밀번호 변경, 알림 설정, 동료 프로필 조회
+- 설명: 프론트엔드 스레드(`docs/threads/2025-12-19-frontend-mvp-analysis.md`)에서 필요로 하는 다음 API가 `career_map_erd.md`에 정의되어 있지 않습니다: `GET /auth/check-nickname`, `POST /auth/password/change`, `GET/PUT /me/notification-settings`, `GET /users/{userId}/profile`. 명세 부재로 서버 구현/FE 연동 지연 위험이 있습니다.
+- 제안:
+  - `career_map_erd.md`에 위 API를 추가 정의(요청/응답 스키마, 권한, 에러 코드 포함).
+  - 서버 백로그(`server-next-steps.md`)에 P0/P1 우선순위로 반영.
+  - 결정/확정 사항은 서버 스레드에 기록.
+- 우선순위: High
+- 권장 담당: 서버 + 프론트엔드
+
+생성자: Plan 에이전트

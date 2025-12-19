@@ -59,7 +59,7 @@
   - 이메일 가입/로그인, 토큰(Access/Refresh), 비밀번호 재설정, 로그아웃
 - 사용자/인증(Auth/User)
 
-문서(`/docs/docs/career_map_erd.md`, `/docs/docs/career_map_plan_doc.md`, `/docs/docs/career_map_story_board.md`) 기준 핵심 도메인은 다음과 같음.
+문서(`docs/career_map_erd.md`, `docs/career_map_plan_doc.md`, `docs/career_map_story_board.md`) 기준 핵심 도메인은 다음과 같음.
 ## 3. 도메인 개요 (문서 기준)
 
   - 로컬: `./gradlew bootRun`
@@ -73,5 +73,4 @@
 - 레포: `hamhub` (Kotlin + Spring Boot 스켈레톤)
 - 서비스: CareerMap(커리어맵) 백엔드 API 서버
 ## 1. 서비스 및 레포 개요
-
 

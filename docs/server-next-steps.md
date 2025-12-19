@@ -1,10 +1,10 @@
 # CareerMap 서버 Next Steps (백엔드 백로그)
 
 ## 0. 기준 문서
-- ERD: `docs/docs/career_map_erd.md`
-- 기획/플랜: `docs/docs/career_map_plan_doc.md`
-- 스토리보드: `docs/docs/career_map_story_board.md`
-- PM 스레드: `docs/docs/threads/2025-12-19-careermap-pm.md`
+- ERD: `docs/career_map_erd.md`
+- 기획/플랜: `docs/career_map_plan_doc.md`
+- 스토리보드: `docs/career_map_story_board.md`
+- PM 스레드: `docs/threads/2025-12-19-careermap-pm.md`
 
 ---
 
@@ -63,8 +63,8 @@
 ---
 
 ## 2. 작업 방식
-- 모든 설계 변경/결정 기록은 `docs/docs/threads/YYYY-MM-DD-careermap-server.md`에 append
-- 주요 아키텍처/도메인 결정은 `docs/docs/decision-record-*.md` 형식으로 템플릿(`templates/decision-record.md`)을 사용해 남길 것
+- 모든 설계 변경/결정 기록은 `docs/threads/YYYY-MM-DD-careermap-server.md`에 append
+- 주요 아키텍처/도메인 결정은 `docs/decision-record-*.md` 형식으로 템플릿(`templates/decision-record.md`)을 사용해 남길 것
 - 하루 작업 요약은 `templates/task-report.md`를 참고해 작성(예: `task-report-2025-12-19-server.md`)
 
 ---
@@ -73,5 +73,4 @@
 - [ ] 프로젝트 로컬 실행 가능 상태 만들기(의존성/설정 정리 + 헬스체크)
 - [ ] Auth 도메인 설계 및 `/auth/signup`, `/auth/login` 스켈레톤 컨트롤러 구현
 - [ ] 공통 에러 응답 포맷 및 글로벌 예외 핸들러 추가
-- [ ] 진행/결정/질문은 `docs/docs/threads/2025-12-19-careermap-server.md`에 기록
-
+- [ ] 진행/결정/질문은 `docs/threads/2025-12-19-careermap-server.md`에 기록
