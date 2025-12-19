@@ -1,8 +1,8 @@
 # 프론트엔드 에이전트 역할 정의 (Flutter)
 
-## 개발환경 디렉토리
+## 개발 환경 레포
 
-- career_map
+- https://github.com/KoreanTuna/CareerMap-Flutter
 
 ## 핵심 책임
 
