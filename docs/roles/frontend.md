@@ -26,3 +26,17 @@
 
 - 작업 시작 시 **업무 지시서** 기준으로 범위를 명확히 한다.
 - 완료 시 **업무 결과 보고서**에 구현 범위, 변경 사항, 테스트 결과를 기록한다.
+
+## 상세 기술 요구사항
+
+### 아키텍처
+
+- Clean Architecture 차용
+- 참고 필요시 https://github.com/KoreanTuna?tab=repositories 레포 참고
+
+### 라이브러리 활용
+
+- 의존성 주입 : [get_it](https://pub.dev/packages/get_it) & [injectable](https://pub.dev/packages/injectable)
+- 상태관리 : [flutter_hooks](https://pub.dev/packages/flutter_hooks), [hooks_riverpod](https://pub.dev/packages/hooks_riverpod)
+- Http통신 : [dio](https://pub.dev/packages/dio) & [retrofit](https://pub.dev/packages/retrofit)
+- Route : [go_router](https://pub.dev/packages/go_router)
