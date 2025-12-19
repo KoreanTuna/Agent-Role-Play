@@ -8,6 +8,7 @@
 - [프론트엔드 에이전트](roles/frontend.md)
 - [서버 에이전트](roles/server.md)
 - [문서화 에이전트](roles/documentation.md)
+- [개발자용 운영 가이드](developer-guide.md)
 
 ## 2) 공통 문서 템플릿
 - [업무 지시서 템플릿](templates/task-brief.md)
