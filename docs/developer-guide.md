@@ -125,6 +125,7 @@ git commit -m "chore: bump docs"
 ```
 
 **검증 절차**:
+
 ```bash
 # 1. 서브모듈이 올바르게 연결되었는지 확인
 git submodule status
@@ -158,14 +159,18 @@ git submodule update --remote --merge
 
 - 모든 에이전트는 **작업 착수 전에** 코드 레포 루트에서 docs 서브모듈을 최신화한다.
 - 기본 명령:
+
 ```bash
 git submodule update --init --recursive  # 최초 1회 또는 새 클론 후
 git submodule update --remote docs       # 최신 문서 반영
 ```
+
 - 상태 확인:
+
 ```bash
 git submodule status
 ```
+
 - 실패 시: 네트워크/권한/브랜치 문제를 담당 스레드에 `[이슈]`로 기록하고 PM에게 알린다.
 
 ## 9. 에이전트별 업무 시작 프롬프트
@@ -173,13 +178,13 @@ git submodule status
 부트스트랩 파일(`*.md`)을 먼저 열어 맥락을 파악하고, 필요 시 같은 md에 진행 로그/질문을 append합니다.
 
 - PM 에이전트
-  - "PM 에이전트입니다. 1) docs 서브모듈 최신화 확인 후 developer-guide/plan/story-board/erd 스캔. 2) 담당 스레드에서 기존 지시/이슈/결정 파악. 3) 필요 시 task-brief 템플릿으로 지시 초안 작성·threads에 붙여넣기. 4) 막힌 정보는 client-question 템플릿으로 작성·스레드에 추가·답변 기한 명시. 5) 진행/차단/다음 액션을 매일 threads에 append."
+  - "당신은 PM 에이전트입니다. 1) docs 서브모듈 최신화 확인 후 developer-guide/plan/story-board/erd 스캔. 2) 담당 스레드에서 기존 지시/이슈/결정 파악. 3) 필요 시 task-brief 템플릿으로 지시 초안 작성·threads에 붙여넣기. 4) 막힌 정보는 client-question 템플릿으로 작성·스레드에 추가·답변 기한 명시. 5) 진행/차단/다음 액션을 매일 threads에 append."
 - 프론트엔드 에이전트
-  - "프론트엔드 에이전트입니다. 1) docs 서브모듈 최신화 후 storyboard/plan/erd(필요 시) 읽기. 2) 담당 스레드 지시 범위와 완료 조건 확인. 3) 화면별 상태(로딩/빈/오류)와 UX 흐름을 md에 정리. 4) 디자인 자산/컴포넌트/색상/폰트 미정이면 issue-log로 차단 기록. 5) API 계약 불명확 시 erd 참고 후 질문을 threads에 남기고 테스트 계획(기기/해상도/테스트 툴)까지 적기."
+  - "당신은 프론트엔드 에이전트입니다. 우리팀의 디자이너는 없기 때문에 당신이 개발하면서 직접 디자인하며 진행해야합니다. 1) docs 서브모듈 최신화 후 storyboard/plan/erd(필요 시) 읽기. 2) 담당 스레드 지시 범위와 완료 조건 확인. 3) 화면별 상태(로딩/빈/오류)와 UX 흐름을 md에 정리. 4) 디자인 자산/컴포넌트/색상/폰트 미정이면 issue-log로 차단 기록. 5) API 계약 불명확 시 erd 참고 후 질문을 threads에 남기고 6) 개발 진행
 - 서버 에이전트
-  - "서버 에이전트입니다. 1) docs 서브모듈 최신화 후 erd/plan/storyboard 스캔. 2) 지시서에 필요한 API/도메인 범위 확인, 누락 엔드포인트는 issue-log에 질문/제안 기록. 3) 스키마/마이그레이션/시드, 인증/권한, 레이트리밋/타임아웃 등 운영 고려사항을 md에 적기. 4) 배포/환경 변수/비밀 관리 방식 미정이면 차단으로 명시하고 PM 호출."
+  - "당신은 서버 에이전트입니다. 1) docs 서브모듈 최신화 후 erd/plan/storyboard 스캔. 2) 지시서에 필요한 API/도메인 범위 확인, 누락 엔드포인트는 issue-log에 질문/제안 기록. 3) 스키마/마이그레이션/시드, 인증/권한, 레이트리밋/타임아웃 등 운영 고려사항을 md에 적기. 4) 배포/환경 변수/비밀 관리 방식 미정이면 차단으로 명시하고 PM 호출. 5) 개발진행"
 - 문서화 에이전트
-  - "문서화 에이전트입니다. 1) docs 서브모듈 최신화 후 glossary/plan/storyboard/erd를 스캔해 용어/정의 기준 확보. 2) threads의 최신 지시/업데이트/결정과 코드/문서 간 일관성 점검. 3) 재현성 부족(설치/빌드/실행 절차 누락)이나 용어 충돌을 발견하면 issue-log로 기록하고 필요한 문서에 즉시 수정/추가. 4) 결과 보고서 누락 시 담당자 태그하여 요청."
+  - "당신은 문서화 에이전트입니다. 1) docs 서브모듈 최신화 후 glossary/plan/storyboard/erd를 스캔해 용어/정의 기준 확보. 2) threads의 최신 지시/업데이트/결정과 코드/문서 간 일관성 점검. 3) 재현성 부족(설치/빌드/실행 절차 누락)이나 용어 충돌을 발견하면 issue-log로 기록하고 필요한 문서에 즉시 수정/추가. 4) 결과 보고서 누락 시 담당자 태그하여 요청."
 
 ### PM → 클라이언트 질의 작성 규칙
 
@@ -190,6 +195,7 @@ git submodule status
 ## 10. 에이전트별 필독 md 파일
 
 ### 공통(모든 에이전트) - 읽기 순서
+
 1. `docs/quick-start.md`: **가장 먼저 읽기** (5분 안에 시작)
 2. `docs/glossary.md`: 용어 사전 (참고용, 필요 시)
 3. `docs/README.md`: 문서 구조와 규칙 인덱스
@@ -199,24 +205,28 @@ git submodule status
 7. `docs/threads/*.md`: 실시간 진행/결정/결과 기록 (담당 스레드 열람/작성 필수)
 
 ### PM - 읽기 순서
+
 1. `docs/roles/pm.md`: **역할 정의 (먼저 읽기)**
 2. `docs/career_map_plan_doc.md`: 현재 계획/마일스톤/우선순위
 3. `docs/career_map_story_board.md`: 사용자 시나리오/주요 UX 흐름
 4. `docs/career_map_erd.md`: API/DB 설계 (서버와 협업 시 참고)
 
 ### 프론트엔드 - 읽기 순서
+
 1. `docs/roles/frontend.md`: **역할 정의 (먼저 읽기)**
 2. `docs/career_map_story_board.md`: 화면 흐름/UX 요구
 3. `docs/career_map_plan_doc.md`: 범위/우선순위 및 마감
 4. `docs/career_map_erd.md`: API 명세 (서버 연동 시 참고)
 
 ### 서버 - 읽기 순서
+
 1. `docs/roles/server.md`: **역할 정의 (먼저 읽기)**
 2. `docs/career_map_erd.md`: 데이터 모델/관계 정의, API 명세
 3. `docs/career_map_plan_doc.md`: API 범위/우선순위
 4. `docs/career_map_story_board.md`: 프론트엔드 요구사항 (연동 시 참고)
 
 ### 문서화 - 읽기 순서
+
 1. `docs/roles/documentation.md`: **역할 정의 (먼저 읽기)**
 2. `docs/career_map_plan_doc.md`: 전달해야 할 계획/스코프
 3. `docs/career_map_story_board.md`: 사용자 흐름을 기반으로 용어/설명 정합성 체크
@@ -226,6 +236,7 @@ git submodule status
 ## 11. 기술 스택 버전 정보
 
 ### 프론트엔드 (Flutter)
+
 - **Flutter SDK**: 3.16.0 이상 (권장: 최신 stable)
 - **Dart**: 3.2.0 이상 (Flutter에 포함)
 - **주요 패키지** (최소 버전):
@@ -239,11 +250,13 @@ git submodule status
   - `flutter_secure_storage`: ^9.0.0
 
 **호환성**:
+
 - Android: API 21 (Android 5.0) 이상
 - iOS: 12.0 이상
 - Web: Chrome/Safari/Firefox 최신 2개 버전
 
 ### 서버 (Kotlin & Spring Boot)
+
 - **Kotlin**: 1.9.0 이상
 - **JDK**: 17 (LTS)
 - **Spring Boot**: 3.2.0 이상
@@ -255,10 +268,12 @@ git submodule status
   - PostgreSQL Driver (또는 H2 for dev)
 
 **호환성**:
+
 - 데이터베이스: PostgreSQL 14 이상 (프로덕션), H2 (개발)
 - 빌드 툴: Gradle 8.0 이상
 
 ### 개발 환경
+
 - **Git**: 2.30 이상 (서브모듈 지원)
 - **IDE**:
   - Flutter: Android Studio / VS Code + Flutter 확장
@@ -266,11 +281,13 @@ git submodule status
 - **테스트**: Flutter Test, JUnit 5
 
 ### 업데이트 정책
+
 - **Flutter**: 매 stable 릴리스마다 검토, 6개월마다 메이저 업데이트
 - **Spring Boot**: 매 마이너 버전 검토, 1년마다 메이저 업데이트
 - **의존성 보안 업데이트**: 즉시 적용
 
 **버전 관리**:
+
 - 프론트엔드: `pubspec.yaml`
 - 서버: `build.gradle.kts`
 - 문서화 에이전트가 분기마다 버전 호환성 체크
