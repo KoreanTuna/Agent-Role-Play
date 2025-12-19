@@ -408,13 +408,14 @@
 
 ---
 
-## [차단 사항] 디자인 자산 미정
+## [해결됨] 디자인 자산 미정 → 디자인 시스템 구축 완료
 
-### 심각도: 높음
+### 심각도: 높음 (해결됨)
 ### 발생 일자: 2025-12-19
+### 해결 일자: 2025-12-19
 
-### 차단 내용
-현재 디자인 자산이 제공되지 않아 다음 항목들이 불명확합니다:
+### 차단 내용 (원본)
+현재 디자인 자산이 제공되지 않아 다음 항목들이 불명확했습니다:
 
 1. **컬러 시스템**
    - Primary/Secondary/Accent 색상
@@ -444,28 +445,28 @@
    - 탭 아이콘
    - 액션 아이콘
 
-### 영향 범위
-- UI 컴포넌트 개발 시작 불가
-- 테마 설정 불가
-- 일관된 디자인 시스템 구축 불가
+### 해결 방안
+**선택: 옵션 2 - Material Design 3 기반 커스텀 디자인 시스템 구축**
 
-### 대응 방안
-다음 중 하나를 선택해야 합니다:
+프론트엔드 에이전트가 디자인 시스템을 직접 정의하여 [design-guide.md](../design-guide.md) 문서로 작성 완료.
 
-**옵션 1: 디자인 가이드 대기** (권장)
-- PM/디자이너에게 디자인 가이드 요청
-- Figma 링크 또는 디자인 토큰 제공 요청
+### 완료된 항목
+- [x] 컬러 시스템 정의 (Primary: Indigo Blue, Secondary: Teal Green, Accent: Amber)
+- [x] 타이포그래피 시스템 (Pretendard 폰트, Type Scale 정의)
+- [x] 간격 시스템 (8pt Grid System)
+- [x] Border Radius 시스템
+- [x] Elevation & Shadow 가이드
+- [x] 아이콘 시스템 (Material Symbols Rounded)
+- [x] 주요 컴포넌트 디자인 가이드 (Button, Input, Card, AppBar, BottomNav 등)
+- [x] 애니메이션 & Transition 가이드
+- [x] 접근성 가이드라인
+- [x] 플랫폼별 고려사항
 
-**옵션 2: 임시 디자인 시스템 구축**
-- Material Design 3 기본값 사용
-- 추후 디자인 가이드 제공 시 전면 수정 필요
-
-### 요청 사항
-PM에게 다음 정보 제공 요청:
-- [ ] Figma 디자인 파일 링크
-- [ ] 디자인 토큰 (색상/폰트/간격)
-- [ ] UI 컴포넌트 라이브러리 가이드
-- [ ] 브랜드 가이드라인
+### 다음 단계
+디자인 시스템 정의가 완료되었으므로 개발 진행 가능:
+1. Flutter 테마 설정 (lib/core/theme/)
+2. 디자인 토큰 코드화
+3. 공통 UI 컴포넌트 개발
 
 ---
 
@@ -725,14 +726,95 @@ Response: { 공개 범위 내 프로필 정보 }
 - MVP 화면별 상태 및 UX 흐름 분석
 - 차단 사항 식별
 - 테스트 계획 수립
+- **디자인 시스템 정의 완료** (2025-12-19)
+  - Material Design 3 기반 커스텀 디자인 시스템
+  - 컬러/타이포그래피/간격/컴포넌트 가이드
+  - 문서: [design-guide.md](../design-guide.md)
 
 ### ⏸️ 차단됨
-- 디자인 가이드 미제공
-- 일부 API 엔드포인트 누락
-- 테스트 환경 정책 미정
+- ~~디자인 가이드 미제공~~ ✅ 해결됨 (2025-12-19)
+- 일부 API 엔드포인트 누락 (심각도: 중간)
+- 테스트 환경 정책 미정 (심각도: 낮음)
 
 ### 🔜 대기 중
-- PM의 디자인 가이드 및 정책 제공
+- ~~PM의 디자인 가이드 및 정책 제공~~ ✅ 자체 해결
 - 서버 에이전트의 API 명세 보완
-- task-brief 발행
+
+---
+
+## [진행 중] 프로젝트 초기 설정 완료
+
+### 완료 일자: 2025-12-19
+
+### 완료 항목
+
+#### 1. 의존성 관리
+- ✅ pubspec.yaml 패키지 업데이트 완료
+  - flutter_hooks: ^0.21.3
+  - hooks_riverpod: ^2.6.1
+  - get_it: ^9.2.0
+  - go_router: ^17.0.1
+  - dio: ^5.7.0
+  - retrofit, freezed, injectable 등 코드 생성 도구
+
+#### 2. Clean Architecture 폴더 구조 생성
+```
+lib/
+├── core/
+│   ├── theme/             ✅ 완료
+│   ├── di/
+│   ├── router/
+│   ├── utils/
+│   └── constants/
+├── domain/
+│   ├── entities/
+│   ├── repositories/
+│   └── usecases/
+├── data/
+│   ├── models/
+│   ├── repositories/
+│   └── datasources/
+│       ├── remote/
+│       └── local/
+└── presentation/
+    ├── common/
+    │   └── widgets/
+    └── features/
+        ├── auth/
+        ├── home/
+        ├── profile/
+        ├── recommendation/
+        ├── network/
+        └── prediction/
+```
+
+#### 3. 디자인 토큰 구현 완료
+- ✅ [app_colors.dart](../../lib/core/theme/app_colors.dart) - 컬러 시스템
+- ✅ [app_typography.dart](../../lib/core/theme/app_typography.dart) - 타이포그래피
+- ✅ [app_spacing.dart](../../lib/core/theme/app_spacing.dart) - 간격 시스템
+- ✅ [app_borders.dart](../../lib/core/theme/app_borders.dart) - Border Radius
+- ✅ [app_shadows.dart](../../lib/core/theme/app_shadows.dart) - Elevation & Shadow
+- ✅ [app_theme.dart](../../lib/core/theme/app_theme.dart) - ThemeData 통합
+
+#### 4. main.dart 업데이트
+- ✅ AppTheme 적용
+- ✅ 시스템 UI 설정 (상태바, 네비게이션 바)
+- ✅ 기본 HomePage 샘플 구현
+
+### 코드 품질
+- `flutter analyze` 통과 (에러 없음, info 레벨 경고만 존재)
+- 디자인 가이드에 따른 일관된 스타일 적용
+
+### 다음 단계
+1. **의존성 주입 설정** (get_it, injectable)
+2. **라우팅 설정** (go_router)
+3. **공통 UI 컴포넌트 개발**
+   - Button variants
+   - Input Field
+   - Card
+   - AppBar
+   - Bottom Navigation Bar
+4. **인증 플로우 개발**
+   - 로그인/회원가입 화면
+   - 온보딩 화면
 
