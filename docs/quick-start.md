@@ -27,6 +27,15 @@ Agent Role Play 프로젝트를 5분 안에 시작하는 가이드입니다.
 
 ## 🚀 5분 시작하기
 
+### 0단계: docs 서브모듈 최신화(코드 레포에서, 30초)
+
+```bash
+# 코드 레포 루트에서 실행
+git submodule update --init --recursive
+git submodule update --remote docs
+git submodule status  # 상태 확인
+```
+
 ### 1단계: 역할 확인 (1분)
 
 당신의 역할에 맞는 문서를 읽으세요.
