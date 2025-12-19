@@ -98,8 +98,7 @@
 
 ```
 # 코드 레포 루트에서
-git submodule add git submodule add https://github.com/KoreanTuna/Agent-Role-Play docs
- docs
+git submodule add <ops-docs-repo-url> docs
 git submodule update --init --recursive
 git commit -am "chore: add ops-docs submodule"
 ```
@@ -136,3 +135,41 @@ git commit -m "chore: bump docs"
 - 권한: 모든 에이전트가 ops-docs 레포에 동일한 쓰기 권한을 가진다.
 - 분리 배포: 스토어 심사 지연 등과 무관하게 문서 기록은 ops-docs에서만 이어간다.
 - 네이밍: 스레드 파일명/섹션 접두어 규칙은 7장과 동일하게 유지.
+
+## 9. 에이전트별 업무 시작 프롬프트
+
+부트스트랩 파일(`*.md`)을 먼저 열어 맥락을 파악하고, 필요 시 같은 md에 진행 로그/질문을 append합니다.
+
+- PM 에이전트
+  - "PM 에이전트로서 업무 시작. 부트스트랩 파일은 \*.md 이므로 이 내용부터 확인 시작. 필요 시 md에 프롬프팅 내용 추가."
+- 프론트엔드 에이전트
+  - "프론트엔드 에이전트로서 업무 시작. 부트스트랩 파일은 \*.md 이므로 이 내용부터 확인 후 UI/UX/상태 흐름을 정리. 필요 시 md에 진행 로그와 질문을 추가."
+- 서버 에이전트
+  - "서버 에이전트로서 업무 시작. 부트스트랩 파일은 \*.md 이므로 이 내용부터 확인 후 API/데이터모델/배포 고려사항을 정리. 필요 시 md에 진행 로그와 차단 이슈를 추가."
+- 문서화 에이전트
+  - "문서화 에이전트로서 업무 시작. 부트스트랩 파일은 \*.md 이므로 이 내용부터 확인 후 용어/절차/재현성 관점에서 보완점을 기록. 필요 시 md에 편집/추가 내용을 남김."
+
+## 10. 에이전트별 필독 md 파일
+
+- 공통(모든 에이전트)
+  - `docs/README.md`: 문서 구조와 규칙 인덱스.
+  - `docs/templates/*.md`: 지시서/보고/이슈/결정 템플릿.
+  - `docs/developer-guide.md`: 운영/서브모듈/프롬프트 규칙.
+  - `docs/threads/*.md`: 실시간 진행/결정/결과 기록(담당 스레드 열람/작성 필수).
+- PM
+  - `docs/career_map_plan_doc.md`: 현재 계획/마일스톤/우선순위.
+  - `docs/career_map_story_board.md`: 사용자 시나리오/주요 UX 흐름.
+  - `docs/roles/pm.md`: 역할 책임/출력물 확인.
+- 프론트엔드
+  - `docs/career_map_story_board.md`: 화면 흐름/UX 요구.
+  - `docs/career_map_plan_doc.md`: 범위/우선순위 및 마감.
+  - `docs/roles/frontend.md`: FE 역할/기술 스택 기준.
+- 서버
+  - `docs/carrer_map_erd.md`: 데이터 모델/관계 정의.
+  - `docs/career_map_plan_doc.md`: API 범위/우선순위.
+  - `docs/roles/server.md`: 서버 역할/협업 규칙.
+- 문서화
+  - `docs/career_map_plan_doc.md`: 전달해야 할 계획/스코프.
+  - `docs/career_map_story_board.md`: 사용자 흐름을 기반으로 용어/설명 정합성 체크.
+  - `docs/carrer_map_erd.md`: 데이터 용어/정의 일관성 검수.
+  - `docs/roles/documentation.md`: 문서화 역할/산출물 기준.
