@@ -2,6 +2,12 @@
 
 네 가지 에이전트(PM, 프론트엔드, 서버, 문서화)가 문서 기반으로 매끄럽게 협업하도록 업무 지시·검수 방식과 커뮤니케이션 규칙을 정의합니다.
 
+## 빠른 시작
+
+- **처음 시작하시나요?** → [Quick Start 가이드](quick-start.md)를 먼저 읽어보세요 (5분 소요)
+- **용어가 헷갈리시나요?** → [용어 사전](glossary.md)을 참고하세요
+- **템플릿 작성 예시가 필요하신가요?** → [templates/examples/](templates/examples/)를 확인하세요
+
 ## 1. 기본 원칙
 
 - 문서 우선: 모든 요청·결정·리스크를 템플릿 기반 문서로 남긴다(`docs/templates` 활용).
@@ -112,10 +118,22 @@ git commit -am "chore: add ops-docs submodule"
 - 코드 PR 설명에 반드시 해당 스레드 경로/링크를 적는다(누락 시 PR 템플릿이 체크).
 - 문서 머지 후 코드 레포 서브모듈 포인터 업데이트:
 
-```
+```bash
 git submodule update --remote docs
 git add docs
 git commit -m "chore: bump docs"
+```
+
+**검증 절차**:
+```bash
+# 1. 서브모듈이 올바르게 연결되었는지 확인
+git submodule status
+
+# 2. 서브모듈 내용 확인
+cd docs && git log -1 --oneline
+
+# 3. 서브모듈 최신 상태 확인
+git submodule update --remote --merge
 ```
 
 ### C) PR 템플릿 예시(코드 레포 `.github/pull_request_template.md`)
@@ -136,6 +154,12 @@ git commit -m "chore: bump docs"
 - 분리 배포: 스토어 심사 지연 등과 무관하게 문서 기록은 ops-docs에서만 이어간다.
 - 네이밍: 스레드 파일명/섹션 접두어 규칙은 7장과 동일하게 유지.
 
+## 9.1 PM → 클라이언트 질의 작성 규칙
+
+- 클라이언트에게 확인이 필요한 질문/결정/자료 요청은 `docs/templates/client-question.md` 템플릿으로 작성한다.
+- 작성 후 해당 스레드(`docs/threads/...`)에 붙여넣고 회신 기한/전달 경로를 명시한다.
+- 회신을 받으면 같은 스레드에 “답변 요약”을 채워서 추적성을 유지한다.
+
 ## 9. 에이전트별 업무 시작 프롬프트
 
 부트스트랩 파일(`*.md`)을 먼저 열어 맥락을 파악하고, 필요 시 같은 md에 진행 로그/질문을 append합니다.
@@ -151,25 +175,88 @@ git commit -m "chore: bump docs"
 
 ## 10. 에이전트별 필독 md 파일
 
-- 공통(모든 에이전트)
-  - `docs/README.md`: 문서 구조와 규칙 인덱스.
-  - `docs/templates/*.md`: 지시서/보고/이슈/결정 템플릿.
-  - `docs/developer-guide.md`: 운영/서브모듈/프롬프트 규칙.
-  - `docs/threads/*.md`: 실시간 진행/결정/결과 기록(담당 스레드 열람/작성 필수).
-- PM
-  - `docs/career_map_plan_doc.md`: 현재 계획/마일스톤/우선순위.
-  - `docs/career_map_story_board.md`: 사용자 시나리오/주요 UX 흐름.
-  - `docs/roles/pm.md`: 역할 책임/출력물 확인.
-- 프론트엔드
-  - `docs/career_map_story_board.md`: 화면 흐름/UX 요구.
-  - `docs/career_map_plan_doc.md`: 범위/우선순위 및 마감.
-  - `docs/roles/frontend.md`: FE 역할/기술 스택 기준.
-- 서버
-  - `docs/carrer_map_erd.md`: 데이터 모델/관계 정의.
-  - `docs/career_map_plan_doc.md`: API 범위/우선순위.
-  - `docs/roles/server.md`: 서버 역할/협업 규칙.
-- 문서화
-  - `docs/career_map_plan_doc.md`: 전달해야 할 계획/스코프.
-  - `docs/career_map_story_board.md`: 사용자 흐름을 기반으로 용어/설명 정합성 체크.
-  - `docs/carrer_map_erd.md`: 데이터 용어/정의 일관성 검수.
-  - `docs/roles/documentation.md`: 문서화 역할/산출물 기준.
+### 공통(모든 에이전트) - 읽기 순서
+1. `docs/quick-start.md`: **가장 먼저 읽기** (5분 안에 시작)
+2. `docs/glossary.md`: 용어 사전 (참고용, 필요 시)
+3. `docs/README.md`: 문서 구조와 규칙 인덱스
+4. `docs/templates/*.md`: 지시서/보고/이슈/결정 템플릿
+5. `docs/templates/examples/*.md`: 템플릿 작성 예시
+6. `docs/developer-guide.md`: 운영/서브모듈/프롬프트 규칙 (이 문서)
+7. `docs/threads/*.md`: 실시간 진행/결정/결과 기록 (담당 스레드 열람/작성 필수)
+
+### PM - 읽기 순서
+1. `docs/roles/pm.md`: **역할 정의 (먼저 읽기)**
+2. `docs/career_map_plan_doc.md`: 현재 계획/마일스톤/우선순위
+3. `docs/career_map_story_board.md`: 사용자 시나리오/주요 UX 흐름
+4. `docs/career_map_erd.md`: API/DB 설계 (서버와 협업 시 참고)
+
+### 프론트엔드 - 읽기 순서
+1. `docs/roles/frontend.md`: **역할 정의 (먼저 읽기)**
+2. `docs/career_map_story_board.md`: 화면 흐름/UX 요구
+3. `docs/career_map_plan_doc.md`: 범위/우선순위 및 마감
+4. `docs/career_map_erd.md`: API 명세 (서버 연동 시 참고)
+
+### 서버 - 읽기 순서
+1. `docs/roles/server.md`: **역할 정의 (먼저 읽기)**
+2. `docs/career_map_erd.md`: 데이터 모델/관계 정의, API 명세
+3. `docs/career_map_plan_doc.md`: API 범위/우선순위
+4. `docs/career_map_story_board.md`: 프론트엔드 요구사항 (연동 시 참고)
+
+### 문서화 - 읽기 순서
+1. `docs/roles/documentation.md`: **역할 정의 (먼저 읽기)**
+2. `docs/career_map_plan_doc.md`: 전달해야 할 계획/스코프
+3. `docs/career_map_story_board.md`: 사용자 흐름을 기반으로 용어/설명 정합성 체크
+4. `docs/career_map_erd.md`: 데이터 용어/정의 일관성 검수
+5. `docs/threads/*.md`: **모든 스레드 검토** (일관성 확인)
+
+## 11. 기술 스택 버전 정보
+
+### 프론트엔드 (Flutter)
+- **Flutter SDK**: 3.16.0 이상 (권장: 최신 stable)
+- **Dart**: 3.2.0 이상 (Flutter에 포함)
+- **주요 패키지** (최소 버전):
+  - `flutter_hooks`: ^0.20.0
+  - `hooks_riverpod`: ^2.4.0
+  - `dio`: ^5.0.0
+  - `retrofit`: ^4.0.0
+  - `go_router`: ^13.0.0
+  - `get_it`: ^7.6.0
+  - `injectable`: ^2.3.0
+  - `flutter_secure_storage`: ^9.0.0
+
+**호환성**:
+- Android: API 21 (Android 5.0) 이상
+- iOS: 12.0 이상
+- Web: Chrome/Safari/Firefox 최신 2개 버전
+
+### 서버 (Kotlin & Spring Boot)
+- **Kotlin**: 1.9.0 이상
+- **JDK**: 17 (LTS)
+- **Spring Boot**: 3.2.0 이상
+- **주요 의존성**:
+  - Spring Web
+  - Spring Data JPA
+  - Spring Security
+  - JWT (io.jsonwebtoken:jjwt)
+  - PostgreSQL Driver (또는 H2 for dev)
+
+**호환성**:
+- 데이터베이스: PostgreSQL 14 이상 (프로덕션), H2 (개발)
+- 빌드 툴: Gradle 8.0 이상
+
+### 개발 환경
+- **Git**: 2.30 이상 (서브모듈 지원)
+- **IDE**:
+  - Flutter: Android Studio / VS Code + Flutter 확장
+  - Kotlin: IntelliJ IDEA / Android Studio
+- **테스트**: Flutter Test, JUnit 5
+
+### 업데이트 정책
+- **Flutter**: 매 stable 릴리스마다 검토, 6개월마다 메이저 업데이트
+- **Spring Boot**: 매 마이너 버전 검토, 1년마다 메이저 업데이트
+- **의존성 보안 업데이트**: 즉시 적용
+
+**버전 관리**:
+- 프론트엔드: `pubspec.yaml`
+- 서버: `build.gradle.kts`
+- 문서화 에이전트가 분기마다 버전 호환성 체크
